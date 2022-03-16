@@ -1,5 +1,5 @@
 # Wine Quality Predictor 
-# A Nueral Network Project following the Universal Machine Learning Workflow
+# A Neural Network Project following the Universal Machine Learning Workflow
 I attempted to predict a wine's sensory quality (0-9) by its physicochemical properties using NN clasifier, achieving an accuracy of 67.62%
 
 ## Code and Resources
