@@ -1,13 +1,13 @@
 # Wine Quality Predictor 
 # A Nueral Network Project following the Universal Machine Learning Workflow
-I attempted to predict a wine's sensory quality (1-10) by its physicochemical properties using NN clasifier, achieving an accuracy of 67.62%
+I attempted to predict a wine's sensory quality (0-9) by its physicochemical properties using NN clasifier, achieving an accuracy of 67.62%
 
 ## Code and Resources
 * **Python version:** 3.7
 * **Preferable development environment:** Colaboratory
 * **Packages:** tensorflow, sklearn, numpy, pandas, matplotlib, seaborn
 * **Dataset Source:** tensorflow_datasets
-* **Universal Machine Learning Workflow:** Deep Learning with Python
+* **Universal Machine Learning Workflow from:** Deep Learning with Python by F.Chollet
 
 ## Project Overview
 * Developed a NN model that attempts to predict the sensory quality of wine based on its physicochemical properties
@@ -19,7 +19,7 @@ I attempted to predict a wine's sensory quality (1-10) by its physicochemical pr
   5. Develope a model that does better than a baseline model
   6. Develope a model that overfits by scaling up
   7. Tune the hyperparameters, add regularisation and train and test the final model.
-* For the scaling up step, I used a DoE strategy to explore the influence of 3 hyperparameters: number of nodes per layer, number of layers, type of activation function. The aim of the DoE is to maximise the exploratory space while minimising the number of experiments.
+* For the scaling up step, I used a Design-of-Experiments (DoE) strategy to explore the influence of 3 hyperparameters: number of nodes per layer, number of layers, type of activation function. The aim of the DoE is to maximise the exploratory space while minimising the number of experiments.
 * The final model achieved an accuracy of 67.62%, improving the initial 44.9% of the baseline model.
 * The confusion matrix showed the model confused the original class with a similar class (e.g. 6 with 7) 
 * Improvements of the predictor model could be done by changing the model as a regressor or bin classes to form general classes (low, medium, high quality).
@@ -42,7 +42,7 @@ The evaluation protocol is one hold-out validation
 
 ## Load and Prepare the data
 * The dataset 'wine_quality' was imported from tensorflow datasets.
-* The input features were processed into a numpy array and they were standardise by dividing each feature by substracting from mean dividing by its standard deviation.
+* The input features were processed into a numpy array and the features were standardise by substracting the mean and dividing by the standard deviation.
 * The labels were converted into one-hot encoding labels.
 * The data was split into training, validation and test sets (70,15,15).
 
@@ -59,7 +59,7 @@ It was trained with 40 epochs and reached a test accuracy of 55.65%.
 
 ## Develope a model that overfits by scaling up
 I used my Design of Experiments skills to evaluate different models with different hyperparameters, scaling up the initial model. 
-There were 3 desired hyperparameters to investigate: number of nodes, number of layers, activation function type
+There were 3 desired hyperparameters to investigate: number of nodes, number of layers and activation function type.
 The aim of the DoE is to maximise the exploratory space while minimising the number of experiments.
 The experimental space looked as follow:
 
@@ -79,9 +79,9 @@ From these results I decided to continue working with the model with 4 layers an
 
 ### Tune the hyperparameters
 
-Based on the previously selected models, I tunned the hyperparameters to create two new experimental models
-One with 4 layers, 150 nodes per layer and relu as activation function
-The second with 5 layers, 150 nodes per layer and tanh as activation function.
+Based on the previously selected models, I tunned the hyperparameters to create two new experimental models:
+* One with 4 layers, 150 nodes per layer and relu as activation function
+* The second with 5 layers, 150 nodes per layer and tanh as activation function.
 
 After training these model, I obtained the following results
 
