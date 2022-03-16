@@ -30,7 +30,6 @@ Only wine experts can qualify a wine by its sensory qualities, but there are few
 For this project, I worked with a dataset containing the physicochemical properties of 4898 samples of wines as input and their quality scores (0-9) provided by wine experts. The input data consists of 11 numerical continuous variables while the output data consists of a single discrete numerical value. As the output is discrete and not continuous, the problem can be considered a single label multiclass classification problem.
 
 Two hypotheses were made:
-
 * The physical properties of wine can be used to predict its sensory quality.
 * The available dataset is informative enough to learn the relationship between wine properties and its sensory quality.
 
@@ -51,7 +50,7 @@ The evaluation protocol is one hold-out validation
 ### The baseline model
 The baseline model accuracy was 44.9% based on the dummy classifier from sklearn due to an unbalanced dataset as can be seen in the distribution graph.
 
-distribution 
+![](https://github.com/CarolinaKra/WineQualityPredictor/blob/main/images/distributions.png) 
 
 ### The model that beats the baseline model
 The simple NN model was built with one dense layer of 30 nodes and relu as activation function and a second output layer with 10 nodes and softmax activation function.
@@ -63,20 +62,15 @@ There were 3 desired hyperparameters to investigate: number of nodes, number of 
 The aim of the DoE is to maximise the exploratory space while minimising the number of experiments.
 The experimental space looked as follow:
 
-image
+![alt text](https://github.com/CarolinaKra/WineQualityPredictor/blob/main/images/DoE%20(1).png)
 
 The initial experiment results show the following training and validation loss vs epochs graphs:
 
-image
+![](https://github.com/CarolinaKra/WineQualityPredictor/blob/main/images/DoEresults.png)
 
+A summary of the results is shown in the following table:
 
-The minimum validation loss for each experiment can be seen in the following 3d plot
-
-image
-
-A summary of the results is shown in the following table
-
-image table
+![](https://github.com/CarolinaKra/WineQualityPredictor/blob/main/images/doeTable.png)
 
 From these results I decided to continue working with the model with 4 layers and 150 nodes per layer with tanh activation function and the model with 5 layers, 150 nodes per layer with 'relu', because the first has reached the lowest validation loss and the second, the highest validation accuracy
 
@@ -90,13 +84,42 @@ The second with 5 layers, 150 nodes per layer and tanh as activation function.
 
 After training these model, I obtained the following results
 
-image table
+![](https://github.com/CarolinaKra/WineQualityPredictor/blob/main/images/tableAfterTunning.png)
 
 The two new experiments were successful, as the first reached a lower minimum validation loss and the second reached a higher maximum validation accuracy in comparison to the previous best models. I continued working with both of them to the regularisation step.
 
 ### Add regularisation
 
 There are two types of regularisation techniques, the addition of a regulariser for the weight updates and the addition of dropout layers. I carried out experiments where applied a different combination of regularisation techniques to the models we have chosen to work on in the previous step.
+
+These were the training and validation loss vs epochs graph obtained with the different regularisation techniques on the model with relu activation function.
+
+![](https://github.com/CarolinaKra/WineQualityPredictor/blob/main/images/resultsReluAfterReg.png)
+
+The best regularisation technique appeared to be the addition of a dropout layer, however it needed more epochs to be trained on.
+The two models were trained again with this regularisation techniques but with more epochs.
+
+All the regularisation experiment results were summarised in this table:
+
+![](https://github.com/CarolinaKra/WineQualityPredictor/blob/main/images/RegTable.png)
+
+The best model which achieved the highest maximum validation accuracy as well as the lowest minimum validation loss was the model with relu, 4 layers, 150 nodes, and dropout regulariser.
+
+After looking at the optimal number of epochs for this model, I joined the training and validation sets into a final training set and trained the final model with the optimal number of epochs.
+This model yield a test accuracy of 67.62% and the following confusion matrix
+
+![](https://github.com/CarolinaKra/WineQualityPredictor/blob/main/images/confmatrix.png)
+
+## Conclusions
+
+* The final model has achieved a 67.62% accuracy which is more than 12% from the initial simple model with a single input layer and almost 20% higher from the baseline model. Hence, I created a model with statistical power.
+* Looking back at our initial hypotheses, I concluded for the 1st hypothesis that I could predict the wine quality with 67.62% accuracy given the physicochemical properties of the wine. For the second hypothesis, I concluded that the available dataset is partially informative to learn the relationship between the wine properties and its sensory quality.
+* On one hand, I have taken the model to the maximum accuracy I could get by exploring different hyperparameters and regularisation techniques. But, on the other hand, the model isn't accurate enough to be proposed as a wine quality predictor to the wineries.
+* The confusion matrix showed that the samples which weren't correctly classified, were generally confused with classes that are mostly similar to the original class, from this I can suggest two possible ways to improve the model:
+1. Present the problem as a regression model rather than a multiclass classification.
+2. Do feature engineering and join a few classes together, for example, labels up to 4 could be considered low quality, classes 5 and 6 as middle quality and 7 and higher to be considered as high quality. However, this should be discussed with a wine expert to understand where to put exactly the threshold levels.
+* Additionally, the best way to improve the model would be to get more data.  
+
 
 
 
