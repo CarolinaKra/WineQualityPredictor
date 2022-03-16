@@ -7,6 +7,7 @@ I attempted to predict a wine's sensory quality (1-10) by its physicochemical pr
 * **Preferable development environment:** Colaboratory
 * **Packages:** tensorflow, sklearn, numpy, pandas, matplotlib, seaborn
 * **Dataset Source:** tensorflow_datasets
+* **Universal Machine Learning Workflow:** Deep Learning with Python
 
 ## Project Overview
 * Developed a NN model that attempts to predict the sensory quality of wine based on its physicochemical properties
@@ -119,12 +120,3 @@ This model yield a test accuracy of 67.62% and the following confusion matrix
 1. Present the problem as a regression model rather than a multiclass classification.
 2. Do feature engineering and join a few classes together, for example, labels up to 4 could be considered low quality, classes 5 and 6 as middle quality and 7 and higher to be considered as high quality. However, this should be discussed with a wine expert to understand where to put exactly the threshold levels.
 * Additionally, the best way to improve the model would be to get more data.  
-
-
-
-
-
-
-
-
-
