@@ -16,8 +16,8 @@ I attempted to predict a wine's sensory quality (0-9) by its physicochemical pro
   2. Set the measure of success
   3. Set an evaluation protocol
   4. Load and prepare the data
-  5. Develope a model that does better than a baseline model
-  6. Develope a model that overfits by scaling up
+  5. Develop a model that does better than a baseline model
+  6. Develop a model that overfits by scaling up
   7. Tune the hyperparameters, add regularisation and train and test the final model.
 * For the scaling up step, I used a Design-of-Experiments (DoE) strategy to explore the influence of 3 hyperparameters: number of nodes per layer, number of layers, type of activation function. The aim of the DoE is to maximise the exploratory space while minimising the number of experiments.
 * The final model achieved an accuracy of 67.62%, improving the initial 44.9% of the baseline model.
@@ -46,7 +46,7 @@ The evaluation protocol is one hold-out validation
 * The labels were converted into one-hot encoding labels.
 * The data was split into training, validation and test sets (70,15,15).
 
-## Develope a model that does better than a baseline model
+## Develop a model that does better than a baseline model
 
 ### The baseline model
 The baseline model accuracy was 44.9% based on the dummy classifier from sklearn due to an unbalanced dataset as can be seen in the distribution graph.
@@ -57,7 +57,7 @@ The baseline model accuracy was 44.9% based on the dummy classifier from sklearn
 The simple NN model was built with one dense layer of 30 nodes and relu as activation function and a second output layer with 10 nodes and softmax activation function.
 It was trained with 40 epochs and reached a test accuracy of 55.65%.
 
-## Develope a model that overfits by scaling up
+## Develop a model that overfits by scaling up
 I used my Design of Experiments skills to evaluate different models with different hyperparameters, scaling up the initial model. 
 There were 3 desired hyperparameters to investigate: number of nodes, number of layers and activation function type.
 The aim of the DoE is to maximise the exploratory space while minimising the number of experiments.
